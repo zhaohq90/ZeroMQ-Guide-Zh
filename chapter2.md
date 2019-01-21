@@ -1187,7 +1187,7 @@ step1 (void *context) {
  
 static void *
 step2 (void *context) {
-    //  启动步骤1前线绑定至inproc套接字
+    //  启动步骤1前先绑定至inproc套接字
     void *receiver = zmq_socket (context, ZMQ_PAIR);
     zmq_bind (receiver, "inproc://step2");
     pthread_t thread;
@@ -1212,7 +1212,7 @@ int main (void)
 {
     void *context = zmq_init (1);
  
-    //  启动步骤2前线绑定至inproc套接字
+    //  启动步骤2前先绑定至inproc套接字
     void *receiver = zmq_socket (context, ZMQ_PAIR);
     zmq_bind (receiver, "inproc://step3");
     pthread_t thread;
